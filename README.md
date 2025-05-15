@@ -90,17 +90,17 @@ nasm -f elf32 kernel_entry.asm -o kernel_entry.o
 This creates an object file in ELF format for linking with the kernel.
 
 Compile the kernel:
-i686-elf-gcc -ffreestanding -c kernel.cpp -o kernel.o
+i386-elf-gcc -ffreestanding -c kernel.cpp -o kernel.o
 
 The -ffreestanding flag tells the compiler there’s no standard library (OSes don’t use one).
 
 Link the kernel:
-i686-elf-ld -Ttext 0x1000 kernel_entry.o kernel.o -o kernel.elf
+i386-elf-ld -Ttext 0x1000 kernel_entry.o kernel.o -o kernel.elf
 
 This links the kernel to load at address 0x1000 (matching KERNEL_LOCATION in boot.asm).
 
 Convert the kernel to binary:
-i686-elf-objcopy -O binary kernel.elf kernel.bin
+i386-elf-objcopy -O binary kernel.elf kernel.bin
 
 
 Assemble the padding:
